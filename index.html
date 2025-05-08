@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="flip-form">
+      <div class="flip-form-inner">
+        <form class="flip-form-login">
+          <p id="title">Iniciar sesion</p>
+          <div class="email-input">
+            <input
+              id="email"
+              name="email"
+              required
+              placeholder=""
+              type="email"
+              class="input"
+            />
+            <label>Email</label>
+          </div>
+
+          <div class="password-input">
+            <input
+              id="contrasena"
+              name="contraseña"
+              required
+              placeholder=""
+              type="password"
+              class="input"
+            />
+            <label>Contraseña</label>
+          </div>
+          <button class="submit">Iniciar sesión</button>
+          <!-- <p>
+            ¿Aún no tienes cuenta?
+            <button id="toRegisterBtn">Registrate aquí</button>
+          </p> -->
+        </form>
+        <form id="form" class="flip-form-register">
+          <p id="title">Registrarse</p>
+          <div id="name-input" class="name-input">
+            <input
+              name="nombre"
+              required
+              placeholder=""
+              type="name"
+              class="input"
+            />
+            <label>Nombre</label>
+          </div>
+          <div id="lastname-input" class="lastname-input">
+            <input
+              name="apellido"
+              required
+              placeholder=""
+              type="lastName"
+              class="input"
+            />
+            <label>Apellido</label>
+          </div>
+          <div id="email-input" class="email-input">
+            <input
+              name="email"
+              required
+              placeholder=""
+              type="email"
+              class="input"
+            />
+            <label>Email</label>
+          </div>
+          <div id="password-input" class="password-input">
+            <input
+              name="contraseña"
+              required
+              placeholder=""
+              type="password"
+              class="input"
+              minlength="4"
+            />
+            <label>Contraseña</label>
+          </div>
+          <div class="repeat-password-input">
+            <input
+              name="contraseña"
+              required
+              placeholder=""
+              type="password"
+            />
+            <label>Confirmar contraseña</label>
+          </div>
+          <button class="submit">Registrarse</button>
+        </form>
+      </div>
+    </div>
+
+    <div class="background-text">
+      <p>¿Ya tienes cuenta? <button id="toLoginBtn">Iniciar Sesion</button></p>
+      <p>
+        ¿Aún no tienes cuenta?
+        <button id="toRegisterBtn">Registrate aquí</button>
+      </p>
+    </div>
+  </body>
+  <script src="script.js"></script>
+</html>

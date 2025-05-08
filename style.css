@@ -1,0 +1,217 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  margin: 0;
+  background-image: url(./Imagenes/Fondo.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed;
+
+  .background-text {
+    position: fixed;
+    width: 900px;
+    height: 300px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    z-index: 0;
+    background-color: rgb(0, 68, 255);
+    gap: 2rem;
+    pointer-events: auto;
+
+    p {
+      display: flex;
+      flex-direction: column;
+      font-size: 1.5rem;
+      color: rgb(255, 255, 255);
+      text-align: center;
+      gap: 15px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    #toLoginBtn,
+    #toRegisterBtn {
+      font-size: 1.2rem;
+      color: rgba(255, 255, 255, 0.763);
+      background-color: #2374ff;
+      padding: 10px;
+      border: none;
+      text-align: center;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.2s ease;
+
+      &:hover {
+        color: rgb(255, 255, 255);
+        border: 2px solid rgb(255, 255, 255);
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .flip-form {
+    width: 100%;
+    max-width: 500px;
+    font-family: sans-serif;
+    perspective: 1000px;
+    position: relative;
+    left: -20%;
+    z-index: 1;
+  }
+  .flip-form.flipped {
+    pointer-events: none;
+  }
+
+  #title {
+    font-size: 1.5em;
+    font-weight: 900;
+    text-align: center;
+    margin: 0;
+    color: blue;
+  }
+
+  .flip-form-inner {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    height: 500px;
+    margin: 0 auto;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+    pointer-events: auto;
+
+    .flip-form-login {
+      height: 400px;
+    }
+
+    .flip-form-register {
+      height: 500px;
+    }
+
+    .name-input,
+    .lastname-input,
+    .email-input,
+    .password-input,
+    .repeat-password-input {
+      font-family: "Segoe UI", sans-serif;
+      margin: 0 0 1em 0;
+      max-width: 400px;
+      position: relative;
+
+      input {
+        font-size: 100%;
+        padding: 10px;
+        outline: none;
+        border: none;
+        background-color: rgb(243, 243, 243);
+        width: 100%;
+
+        /* &:hover {
+          border: 2px solid rgb(80, 98, 255); /*OJO: cuando se hace el hover, se mueve todo el contenido como si ocupara más espacio
+        } */
+      }
+
+      label {
+        font-size: 100%;
+        position: absolute;
+        left: 0;
+        padding: 10px;
+        margin-left: 0.5em;
+        pointer-events: none;
+        transition: all 0.1s ease;
+        color: rgb(181, 181, 181);
+      }
+
+      :is(input:focus, input:valid) ~ label {
+        transform: translateY(-75%) scale(0.9);
+        margin: 0em;
+        margin-left: 10px;
+        padding: 0.4em;
+        color: rgb(44, 33, 255);
+      }
+
+      :is(input:focus, input:valid) {
+        border: 1.5px solid;
+        border-color: rgba(31, 31, 255, 0.466);
+      }
+    }
+
+    p {
+      font-size: 15px;
+    }
+  }
+
+  .flip-form.flipped .flip-form-inner {
+    transform: translateX(550px) rotateY(180deg);
+  }
+
+  .flip-form-login,
+  .flip-form-register {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: absolute;
+    padding: 20px;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border: 1px solid rgb(80, 98, 255);
+    border-radius: 1rem;
+    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+
+    .submit {
+      align-self: center;
+      font-size: 100%;
+      padding: 10px;
+      border: none;
+      background-color: rgb(8, 32, 255);
+      color: white;
+      border-radius: 20px;
+      width: 300px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: rgb(8, 111, 255);
+        transition: all 0.3s ease;
+        transform: scale(1.05);
+      }
+    }
+  }
+
+  .flip-form-login {
+    background: white;
+    color: rgb(255, 255, 255);
+  }
+
+  .flip-form-register {
+    background: white;
+    color: white;
+    transform: rotateY(180deg);
+  }
+}
+
+.incorrect input {
+  border: 2px solid red !important;
+}
+
+.incorrect label {
+  color: red !important;
+}
+
