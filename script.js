@@ -87,7 +87,6 @@ loginForm.addEventListener("submit", async (e) => {
     });
 
     if (response.ok) {
-      const data = await response.json();
       Swal.fire({
         position: "top-end",
         icon: "success",
@@ -100,8 +99,8 @@ loginForm.addEventListener("submit", async (e) => {
         },
         allowOutsideClick: false,
       });
-      console.log(data);
       loginForm.reset();
+      window.location.href = "https://www.uade.edu.ar";
     } else {
       const error = await response.json();
       alert("Error al iniciar sesión: " + error.message);
