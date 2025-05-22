@@ -16,97 +16,99 @@ toLoginBtn.addEventListener("click", () => {
   }, 400);
 });
 
+const registerForm = document.querySelector(".flip-form-register");
 
-const nameInput = document.getElementById("#name-input");
-const lastnameInput = document.getElementById("#lastname-input");
-const emailInput = document.getElementById("#email-input");
-const passwordInput = document.getElementById("#password-input");
+registerForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-nameInput.addEventListener("invalid", (e) => {
-  if (nameInput.validity.valueMissing) {
-    nameInput.setCustomValidity("Este campo es obligatorio");
-  } else if (nameInput.validity.tooShort) {
-    nameInput.setCustomValidity(
-      `Nombre demasiado corto. Mínimo ${nameInput.minLength} caracteres`
-    );
+  const formData = new FormData(registerForm);
+  const userData = {
+    first_name: formData.get("first_name"),
+    last_name: formData.get("last_name"),
+    email: formData.get("email"),
+    password: formData.get("password"),
+  };
+
+  try {
+    const response = await fetch("http://localhost:9090/api/users", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Usuario registrado con éxito",
+        showConfirmButton: false,
+        timer: 2000,
+        backdrop: false,
+        customClass: {
+          container: "position-fixed",
+        },
+        allowOutsideClick: false,
+      });
+      console.log(data);
+      registerForm.reset();
+      // Cambiar a la vista de login automáticamente
+      toLoginBtn.click();
+    } else {
+      const error = await response.json();
+      alert("Error al registrar: " + error.message);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Error al conectar con el servidor");
   }
 });
 
-nameInput.addEventListener("input", () => {
-  nameInput.setCustomValidity(""); // Limpia el mensaje de error
-});
 
-form.addEventListener("submit", (event) => {
-  if (!nameInput.checkValidity()) {
-    event.preventDefault();
+const loginForm = document.querySelector(".flip-form-login");
+loginForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const formData = new FormData(loginForm);
+  const userData = {
+    email: formData.get("email"),
+    password: formData.get("password"),
+  };
+
+  try {
+    const response = await fetch("http://localhost:9090/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(userData),
+    });
+
+    if (response.ok) {
+      const data = await response.json();
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Usuario logueado con éxito",
+        showConfirmButton: false,
+        timer: 2000,
+        backdrop: false,
+        customClass: {
+          container: "position-fixed",
+        },
+        allowOutsideClick: false,
+      });
+      console.log(data);
+      loginForm.reset();
+    } else {
+      const error = await response.json();
+      alert("Error al iniciar sesión: " + error.message);
+    }
+  } catch (error) {
+    console.error("Error:", error);
+    alert("Error al conectar con el servidor");
   }
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const form = document.getElementById("form");
-// const nameInput = document.getElementsByClassName("name-input");
-// const lastNameInput = document.getElementsByClassName("lastn ame-input");
-// const emailInput = document.getElementsByClassName("email-input");
-// const passwordInput = document.getElementsByClassName("password-input");
-// const repeatPasswordInput = document.getElementsByClassName(
-//   "repeat-password-input"
-// );
-
-// form.addEventListener("submit", (e) => {
-//   let errors = [];
-
-//   if (nameInput) {
-//     // If si estamos en el registro
-//     errors = getSignupFormErrors(
-//       nameInput.value,
-//       lastNameInput.value,
-//       emailInput.value,
-//       passwordInput.value,
-//       repeatPasswordInput.value
-//     );
-//   } else {
-//     // Else si estamos en el login
-//     errors = getLoginFormErrors(emailInput.value, passwordInput.value);
-//   }
-
-//   if (errors.length > 0) {
-//     // Si hay errores
-//     e.preventDefault();
-//   }
-// });
-
-// function getSignupFormErrors(name, lastName, email, password, repeatPassword) {
-//   let errors = [];
-
-//   if (name === "" || name === null) {
-//     errors.push("Name is required");
-//     document.querySelector(".name-input").classList.add("incorrect");
-//   }
-//   if (lastName === "" || lastName === null) {
-//     errors.push("Last name is required");
-//     document.querySelector(".lastname-input").classList.add("incorrect");
-//   }
-//   if (email === "" || email === null) {
-//     errors.push("Email is required");
-//     document.querySelector(".email-input").classList.add("incorrect");
-//   }
-//   if (password === "" || password === null) {
-//     errors.push("Password is required");
-//     document.querySelector(".password-input").classList.add("incorrect");
-//   }
-
-//   return errors;
-// }

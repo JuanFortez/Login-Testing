@@ -26,7 +26,7 @@
           <div class="password-input">
             <input
               id="contrasena"
-              name="contraseña"
+              name="password"
               required
               placeholder=""
               type="password"
@@ -44,20 +44,20 @@
           <p id="title">Registrarse</p>
           <div id="name-input" class="name-input">
             <input
-              name="nombre"
+              name="first_name"
               required
               placeholder=""
-              type="name"
+              type="text"
               class="input"
             />
             <label>Nombre</label>
           </div>
           <div id="lastname-input" class="lastname-input">
             <input
-              name="apellido"
+              name="last_name"
               required
               placeholder=""
-              type="lastName"
+              type="text"
               class="input"
             />
             <label>Apellido</label>
@@ -74,25 +74,27 @@
           </div>
           <div id="password-input" class="password-input">
             <input
-              name="contraseña"
+              name="password"
               required
               placeholder=""
               type="password"
               class="input"
-              minlength="4"
+              minlength="8"
             />
             <label>Contraseña</label>
           </div>
           <div class="repeat-password-input">
             <input
-              name="contraseña"
+              name="confirm-password"
               required
               placeholder=""
               type="password"
+              class="input"
+              minlength="8"
             />
             <label>Confirmar contraseña</label>
           </div>
-          <button class="submit">Registrarse</button>
+          <button type="submit" class="submit">Registrarse</button>
         </form>
       </div>
     </div>
@@ -105,5 +107,6 @@
       </p>
     </div>
   </body>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="script.js"></script>
 </html>
